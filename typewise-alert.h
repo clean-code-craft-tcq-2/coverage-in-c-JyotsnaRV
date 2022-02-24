@@ -29,10 +29,11 @@ typedef struct {
 typedef enum
 {
   ALERT_FAILURE,
-  ALERT_SUCCESS
+  ALERT_SUCCESS,
+  ALERT_NOT_REQ
 }AlertRetStatus;
 
-void checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, double temperatureInC);
-BreachType classifyTemperatureBreachRange(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
+AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, double temperatureInC);
+AlertRetStatus classifyBreachAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);

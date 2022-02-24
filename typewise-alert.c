@@ -52,11 +52,11 @@ BreachType classifyTemperatureBreachRange(AlertTarget alertTarget, BatteryCharac
   if((batteryChar.coolingType >= 0) && (batteryChar.coolingType <= 2))
   {
     breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
-    checkAndAlert(alertTarget, breachType, temperatureInC)
+    checkAndAlert(alertTarget, breachType, temperatureInC);
   }
   else
   {
-    breachType = 3; 
+    breachType = NOTABREACH; 
   }
   return(breachType);
   }

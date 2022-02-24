@@ -50,8 +50,13 @@ TEST_CASE("infers the low breach according to med active cooling limits and send
   REQUIRE(classifyBreachAndAlert(TO_CONTROLLER, batteryChar, -2) == ALERT_SUCCESS);
 }
 
-TEST_CASE(" Negative test - Unknown cooling type requested") {
+TEST_CASE(" Negative test - Unknown cooling type requested [UPPER LIMIT]") {
   BatteryCharacter batteryChar = {(CoolingType)4, "MED_ACTIVE_COOLING_LOW_BREACH"};
+  REQUIRE(classifyBreachAndAlert(TO_CONTROLLER, batteryChar, 40) == UNKNOWN_BREACH_ALERT_FAILED);
+}
+
+TEST_CASE(" Negative test - Unknown cooling type requested [Lower Limit]") {
+  BatteryCharacter batteryChar = {(CoolingType)-1, "MED_ACTIVE_COOLING_LOW_BREACH"};
   REQUIRE(classifyBreachAndAlert(TO_CONTROLLER, batteryChar, 40) == UNKNOWN_BREACH_ALERT_FAILED);
 }
 

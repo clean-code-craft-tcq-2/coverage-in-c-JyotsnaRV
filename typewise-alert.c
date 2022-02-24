@@ -39,11 +39,11 @@ AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, d
   switch(alertTarget) {
     case TO_CONTROLLER:
       sendToController(typeOfBreach);
-      alertRet = ALERT_SUCCESS
+      alertRet = ALERT_SUCCESS;
       break;
     case TO_EMAIL:
       sendToEmail(typeOfBreach);
-      alertRet = ALERT_SUCCESS
+      alertRet = ALERT_SUCCESS;
       break;
     default:
       alertRet = ALERT_FAILURE;

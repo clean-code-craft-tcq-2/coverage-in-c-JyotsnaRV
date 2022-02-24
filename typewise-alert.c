@@ -32,30 +32,41 @@ BreachType classifyTemperatureBreach(
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
-void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
+void checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, double temperatureInC) 
+{
+  /* Case to choose the type of alert */
+  switch(alertTarget) {
+    case TO_CONTROLLER:
+      sendToController(typeOfBreach);
+      break;
+    case TO_EMAIL:
+      sendToEmail(typeOfBreach);
+      break;
+  }
+}
+
+BreachType classifyTemperatureBreachRange(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
   BreachType breachType;
   /* check if the colling ranges are between 0 - 2 */
   if((batteryChar.coolingType >= 0) && (batteryChar.coolingType <= 2))
   {
-  breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+    breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+    checkAndAlert(alertTarget, breachType, temperatureInC)
   }
-
-  switch(alertTarget) {
-    case TO_CONTROLLER:
-      sendToController(breachType);
-      break;
-    case TO_EMAIL:
-      sendToEmail(breachType);
-      break;
+  else
+  {
+    breachType = 3; 
   }
-}
-
+  return(breachType);
+  }
+  
 void sendToController(BreachType breachType) {
   const unsigned short header = 0xfeed;
   printf("%x : %x\n", header, breachType);
 }
 
+  
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
   switch(breachType) {

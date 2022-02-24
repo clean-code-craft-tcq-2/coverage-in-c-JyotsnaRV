@@ -64,8 +64,8 @@ AlertRetStatus classifyBreachAndAlert(AlertTarget alertTarget, BatteryCharacter 
   }
   else
   {
-    breachType = NOTABREACH;
-    alertStatus = ALERT_NOT_REQ;
+    breachType = UNKNOWN_BREACH;
+    alertStatus = UNKNOWN_BREACH_ALERT_FAILED;
   }
   return (alertStatus);
   }

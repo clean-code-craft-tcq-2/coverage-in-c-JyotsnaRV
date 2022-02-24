@@ -24,7 +24,7 @@ BreachType classifyTemperatureBreach(
       lowerLimit = 0;
       upperLimit = 45;
       break;
-    case MED_ACTIVE_COOLING:
+    default:
       lowerLimit = 0;
       upperLimit = 40;
       break;
@@ -32,12 +32,14 @@ BreachType classifyTemperatureBreach(
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
-void checkAndAlert(
-    AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
+void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
 
-  BreachType breachType = classifyTemperatureBreach(
-    batteryChar.coolingType, temperatureInC
-  );
+  BreachType breachType;
+  /* check if the colling ranges are between 0 - 2 */
+  if((batteryChar.coolingType >= 0) && (batteryChar.coolingType <= 2))
+  {
+  breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+  }
 
   switch(alertTarget) {
     case TO_CONTROLLER:
@@ -65,7 +67,9 @@ void sendToEmail(BreachType breachType) {
       printf("To: %s\n", recepient);
       printf("Hi, the temperature is too high\n");
       break;
-    case NORMAL:
+    default:
+      printf("To: %s\n", recepient);
+      printf("Hi, the temperature is Normal\n");	
       break;
   }
 }

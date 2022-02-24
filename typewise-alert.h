@@ -10,7 +10,7 @@ typedef enum {
   TOO_LOW,
   TOO_HIGH,
   NORMAL,
-  NOTABREACH
+  UNKNOWN_BREACH
 } BreachType;
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
@@ -30,7 +30,7 @@ typedef enum
 {
   ALERT_FAILURE,
   ALERT_SUCCESS,
-  ALERT_NOT_REQ
+  UNKNOWN_BREACH_ALERT_FAILED
 }AlertRetStatus;
 
 AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, double temperatureInC);

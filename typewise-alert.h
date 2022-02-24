@@ -33,7 +33,7 @@ typedef enum
   UNKNOWN_BREACH_ALERT_FAILED
 }AlertRetStatus;
 
-AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, double temperatureInC);
+AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach);
 AlertRetStatus classifyBreachAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC);
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);

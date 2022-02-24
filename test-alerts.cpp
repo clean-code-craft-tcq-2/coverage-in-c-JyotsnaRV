@@ -57,7 +57,7 @@ TEST_CASE(" Negative test - Unknown cooling type requested") {
 
 TEST_CASE(" Negative test - Unknown alert type requested") {
   BatteryCharacter batteryChar = {MED_ACTIVE_COOLING, "MED_ACTIVE_COOLING_LOW_BREACH"};
-  REQUIRE(classifyBreachAndAlert((AlertRetStatus)3, batteryChar, -2) == ALERT_FAILURE);
+  REQUIRE(classifyBreachAndAlert((AlertTarget)3, batteryChar, -2) == ALERT_FAILURE);
 }
 
 

@@ -32,7 +32,7 @@ BreachType classifyTemperatureBreach(
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
-AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach, double temperatureInC) 
+AlertRetStatus checkAndAlert(AlertTarget alertTarget, BreachType typeOfBreach) 
 {
   AlertRetStatus alertRet;
   /* Case to choose the type of alert */
@@ -60,7 +60,7 @@ AlertRetStatus classifyBreachAndAlert(AlertTarget alertTarget, BatteryCharacter 
   if((batteryChar.coolingType >= 0) && (batteryChar.coolingType <= 2))
   {
     breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
-    alertStatus = checkAndAlert(alertTarget, breachType, temperatureInC);
+    alertStatus = checkAndAlert(alertTarget, breachType);
   }
   else
   {
